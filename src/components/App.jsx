@@ -5,6 +5,7 @@ import { PhonebookFilter } from './phonebook/phonebookFilter';
 import { PhonebookList } from './phonebook/phonebookList';
 import './phonebook/phonebook-style.css';
 
+
 export const App = () => {
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem('phonebook')) ?? []
