@@ -2,11 +2,15 @@ import PropTypes from 'prop-types';
 
 const ContactItem = ({ id, name, number, onDelete }) => {
   return (
-    <div key={id}>
+    <div className="contacts-list" key={id}>
       <div>
         {name}: {number}
       </div>
-      <button type="button" onClick={() => onDelete(id)}>
+      <button
+        className=".delete-btn"
+        type="button"
+        onClick={() => onDelete(id)}
+      >
         Delete
       </button>
     </div>

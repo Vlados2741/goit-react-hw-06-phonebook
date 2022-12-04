@@ -2,7 +2,6 @@ import ContactItem from 'components/phonebook/phonebookItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/slice';
 import { getFilter, getItems } from 'redux/selectors';
-// import { Item } from './ContactList.styled';
 
 const ContactList = () => {
   const dispatch = useDispatch();

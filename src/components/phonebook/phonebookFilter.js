@@ -5,19 +5,13 @@ import { getFilter } from 'redux/selectors';
 const Filter = () => {
   const dispatch = useDispatch();
   const filterName = useSelector(getFilter);
-
   const handleInput = evt => {
     dispatch(filterContacts(evt.currentTarget.value));
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Find contacts by name"
-        value={filterName}
-        onChange={handleInput}
-      />
+    <div className="filter-input">
+      <input type="text" value={filterName} onChange={handleInput} />
     </div>
   );
 };

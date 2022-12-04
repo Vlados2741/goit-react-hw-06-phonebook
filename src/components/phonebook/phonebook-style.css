@@ -27,3 +27,16 @@ button:hover {
 ul {
     list-style: none;
 }
+.filter-input {
+    margin: 15px;
+    align-items: center;
+}
+
+.contacts-list {
+    display: flex;
+    align-items: center;
+}
+.search {
+    display: flex;
+    margin-left: 15px;
+}
