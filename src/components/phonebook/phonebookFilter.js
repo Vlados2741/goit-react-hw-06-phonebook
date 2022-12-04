@@ -1,21 +1,25 @@
-import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterContacts } from 'redux/slice';
+import { getFilter } from 'redux/selectors';
 
-const filterId = nanoid(5);
+const Filter = () => {
+  const dispatch = useDispatch();
+  const filterName = useSelector(getFilter);
 
-export const PhonebookFilter = ({ onFilter, value }) => {
+  const handleInput = evt => {
+    dispatch(filterContacts(evt.currentTarget.value));
+  };
+
   return (
-    <form className="phonebook__form">
-      <label htmlFor={filterId}>Find contacts by name</label>
+    <div>
       <input
-        autoComplete="off"
-        id={filterId}
         type="text"
-        name="filter"
-        value={value}
-        onChange={onFilter}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        required
+        placeholder="Find contacts by name"
+        value={filterName}
+        onChange={handleInput}
       />
-    </form>
+    </div>
   );
 };
+
+export default Filter;

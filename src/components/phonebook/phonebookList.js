@@ -1,18 +1,35 @@
-export const PhonebookList = ({ list, onContactRemover }) => {
-  const itemList = list.map(({ id, name, number }) => {
-    return (
-      <li key={id} className="list-item">
-        {name}: {number}
-        <button
-          className="delete-btn"
-          type="button"
-          onClick={() => onContactRemover(id)}
-        >
-          Delete
-        </button>
-      </li>
-    );
-  });
+import ContactItem from 'components/phonebook/phonebookItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from 'redux/slice';
+import { getFilter, getItems } from 'redux/selectors';
+// import { Item } from './ContactList.styled';
 
-  return <ul>{itemList}</ul>;
+const ContactList = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getItems);
+  const filterContact = useSelector(getFilter);
+
+  const handleDelete = id => dispatch(deleteContact(id));
+
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filterContact.toLowerCase())
+  );
+
+  // console.log(visibleContacts);
+
+  return (
+    <ul>
+      {visibleContacts.map(({ id, name, number }) => (
+        <ContactItem
+          id={id}
+          key={id}
+          name={name}
+          number={number}
+          onDelete={handleDelete}
+        />
+      ))}
+    </ul>
+  );
 };
+
+export default ContactList;
